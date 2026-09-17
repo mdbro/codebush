@@ -1,0 +1,37 @@
+[package]
+name = "codebush"
+version = "0.1.0"
+edition = "2024"
+description = "A GPU-resident source atlas and 12D reference explorer for the RTX 5090"
+repository = "https://github.com/mdbro/codebush"
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+bytemuck = { version = "1", features = ["derive"] }
+clap = { version = "4", features = ["derive"] }
+fontdue = "0.9"
+ignore = "0.4"
+pollster = "0.4"
+png = "0.18"
+rayon = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+syn = { version = "2", features = ["full", "visit"] }
+proc-macro2 = { version = "1", features = ["span-locations"] }
+toml_edit = { version = "0.25.15", default-features = false, features = ["parse"] }
+wgpu = { version = "=29.0.4", default-features = false, features = ["std", "parking_lot", "vulkan", "dx12", "wgsl"] }
+winit = "0.30.13"
+streemap = "=0.1.0"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+opt-level = 3
+
+[profile.dev]
+opt-level = 1
+
+[target.'cfg(windows)'.dependencies]
+rfd = { version = "0.15", default-features = false }
+arboard = { version = "3", default-features = false }

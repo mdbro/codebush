@@ -1,0 +1,6 @@
+/target
+/dist
+/evidence
+/reference
+*.mp4
+*:Zone.Identifier
